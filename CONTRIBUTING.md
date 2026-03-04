@@ -1,0 +1,138 @@
+# How to contribute to FPU Cybersecurity Club's Website
+
+If you're comfortable with Git, GitHub, and and IDE like VS Code, please refer to [REFERENCE.md](/REFERENCE.md) for a more concise overview of the Git and GitHub workflow for this project.
+
+This document is written slightly in-depth for those whose first time working with Git, GitHub, and an IDE like VS Code.
+
+If you get stuck at any point, please feel free to message Ellie (@aether883) or [#website-discussion](https://discord.com/channels/643928417456095238/1364244601245925547), we are happy to help out!. You are also welcome to refer to [this document](https://github.com/edeberry/Documentation/blob/main/Git/git-github-basics.md), which goes a little more in depth about the Git setup process.
+
+## Install Git and an IDE to edit the code
+
+* Install Git from [https://git-scm.com/install/](https://git-scm.com/install/)
+* Install an IDE (Integrated Development Environment) such as VS Code, which can be installed from [https://code.visualstudio.com/Download](https://code.visualstudio.com/Download)
+
+## Clone the Repository to your Local Machine
+
+Cloning downloads a full copy of the repository to your computer so that you can edit files locally.
+
+* On the repository's page on GitHub, click the green code button
+* Copy the repository's URL
+* Open VS Code and press Ctrl + J to open the terminal
+
+Now **choose where you'd like to have this repository** on your computer's local files. Use your the terminal to [navigate to your chosen location](https://fernando-mc.github.io/python3-workshop/navigating-with-a-terminal.html)
+
+For example, from my home directory, to create the repository folder in a folder called "Code" in my Documents folder, I would run the command:
+
+    cd Documents/Code
+
+Double check you're in the right place by running the command pwd (print working directory).
+
+Then, on your terminal, run the following command:
+
+    git clone https://github.com/RESTOFLINK
+
+(*replace the link with the link you copied from the repository*)
+
+If you've never cloned with Git before, you may be prompted to authenticate your account.
+
+Run the `ls` command and you should see the name of the respository listed.
+
+Now enter this folder for your repository using the cd (change directory) command:
+
+    cd repository-name
+
+Now we have cloned the repository locally and navigated into the repository's folder on our local machine.
+
+## Branches for Collaboration
+
+A branch in Git is essentially a separate line of development. By default, Git creates a branch named main when you initialize a new repository. When you create a new branch, you're making a copy of the current branch's state so that you can make changes without affecting the original code.<sup>1</sup>
+
+### Why use Branches?
+
+Branches are invaluable for:
+
+* **Feature Development:** Work on new features in isolation.
+* Bug Fixes: Fix bugs without risking the stability of the main branch.
+* **Collaboration:** Multiple developers can work on different branches simultaneously.
+
+### For this project, you will make a branch to edit the code
+
+Anytime we're editing the code, we make a feature branch.
+
+When you create a new branch, you're making a copy of the current branch's state so that you can make changes without affecting the original code.
+
+### Step 1: Creating a New Branch
+
+To create a new branch, use the following command:
+
+    git checkout -b feature-branchname
+
+This command creates a new branch called feature-branch and switches to it. Now, any changes you make will be recorded in this branch.
+
+**When making a feature branch, name it something descriptive, like feature-mainpage.**
+
+#### Listing Branches
+
+To see all branches in your repository, run:
+
+    git branch
+
+The current branch you're on will be highlighted with an asterisk (*).
+
+It's good practice to run this command **before making changes to any files** to verify you're on your feature branch.
+
+### Step 2: Switching Between Branches
+
+You can switch between branches using:
+
+    git checkout branch-name
+
+(*replace branch-name with the name of the branch you want to switch to*)
+
+### Step 3: Send changes to the main branch
+
+After verifying you're on the feature branch with `git branch`, now is the time to make some edits to files.
+
+If you'd like to see what is different between your branch and main, run the following optional command:
+
+    git diff
+
+(*to exit git diff, press the 'q' key*)
+
+After making some changes to the files, we are ready to send these changes back to the main branch using the following commands:
+
+    git status
+    git add .
+    git commit –m "CONCISE BUT DESCRIPTIVE MESSAGE HERE"
+    git push -u origin feature-branchname
+
+(*remember to replace feature-branchname with the name of the branch*)
+
+**If this is your first time**, you'll be prompted to run the following commands:
+
+    git config –global user.email “you@example.com”
+    git config –global user.name “Your Name”
+
+(*make sure to use the email associated with your GitHub account*)
+
+After submitting your email and name, run the `git push -u origin feature-branchname` command again.
+
+Now the changes have been sent to GitHub, but they haven't been merged with the main branch.
+
+### Step 5: Create a Pull Request in GitHub
+
+    "Pull requests are proposals to merge code changes into a project. A pull request lets you discuss and review changes before merging them. This helps teams work together, catch issues early, and maintain code quality."
+    
+    -GitHub Docs
+
+To create a pull request, go to the repository on GitHub. You should see a popup with a green button that says "Compare & pull request". Press that button.
+
+(*If you don't see this popup, you can go to the "Pull requests" tab on the repository instead.*)
+
+Here is where you can add a description and stuff. If everything looks good, you can go to the "Pull requests" tab on the repository, open your PR, and "Squash and merge". Then, the changes will be reflected in the main branch as well.
+
+Pull requests are great because they create a space to easily review the code, especially if a merge conflict occurs. If you're not sure about your code and don't want to merge it with main yet, you can message [#website-discussion](https://discord.com/channels/643928417456095238/1364244601245925547) to get input on your pull request before squashing and merging it.
+
+## References
+
+1. [https://dev.to/imevanc/branching-in-git-collaborate-like-a-pro-1hbl](https://dev.to/imevanc/branching-in-git-collaborate-like-a-pro-1hbl)
