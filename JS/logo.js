@@ -4,7 +4,7 @@ const doc = document.querySelector('.logo-wrap');
 const obj = document.querySelector('#logo');
 
 
-obj.addEventListener('load', () => {
+function logoEventListener() {
     const svgDoc = obj.contentDocument;
     const clipCircle = svgDoc.querySelector('#circleclip');
     const svgElement = svgDoc.documentElement;
@@ -42,4 +42,13 @@ obj.addEventListener('load', () => {
         clipCircle.setAttribute('cx', 676767.676767);
         clipCircle.setAttribute('cy', 676767.676767);
     });
-});
+};
+
+// Firefox Issue where the javascript fires off before the SVG loads
+if (obj.contentDocument && obj.contentDocument.readyState === 'complete') {
+    // already loaded
+    logoEventListener();
+} else {
+    // wait until it loads
+    obj.addEventListener('load', logoEventListener);
+}
