@@ -1,3 +1,4 @@
-import * as logo from './logo.js';
-import * as sidebar from './sidebar.js';
-import * as message_form from './message_form.js';
+import  './logo.js';
+import  './sidebar.js';
+import  './message_form.js';
+import  './leaders.js';
