@@ -28,6 +28,8 @@
 
     <!-- web components -->
     <script type="module" src="/components/slideshow/slideshow.js"></script>
+    <script type="module" src="/components/popup/popup.js"></script>
+
 
 </head>
 
@@ -86,6 +88,11 @@
         </div>
     </div>
 
+    <pop-up title="My Title">
+        <button slot="button"> Button to open the popup</button>
+        <p>This is the main content</p>
+    </pop-up>
+
 
     <slide-show items='[
         {"title": "img1", "img": "/assets/leader/router.png"},
@@ -104,17 +111,20 @@
                 </div>
                 <div class="fuchsia-texthover">
                     <label for="contact_name">
-                        <h3> Name </h3></label>
+                        <h3> Name </h3>
+                    </label>
                     <input class="connect_input" id="contact_name" type="text" placeholder="Name" title="Name" name="Name" autocomplete="name" required>
                 </div>
                 <div class="fuchsia-texthover">
                     <label for="contact_email">
-                        <h3> Email </h3></label>
+                        <h3> Email </h3>
+                    </label>
                     <input class="connect_input" id="contact_email" type="email" placeholder="youremail@cyber.com" title="Email" name="Email" autocomplete="email" required>
                 </div>
                 <div class="fuchsia-texthover">
                     <label for="contact_message">
-                        <h3> Message </h3></label>
+                        <h3> Message </h3>
+                    </label>
                 </div>
                 <textarea class="connect_input" id="contact_message" rows="4" cols="120" placeholder="Message..." title="Message" name="Message" required></textarea>
                 <button id="form_contact_button" type="submit" value="Send" class="retro_button connect_input" title="Send">Send</button>
@@ -128,26 +138,26 @@
                     <div class="fuchsia-texthover">
                         <h3> Involve </h3>
                         <a href="https://floridapoly.presence.io/organization/cybersecurity-club" target="_blank" rel="noopener noreferrer">
-                            <img class="app_icon hover_bounce involve_img" src="/assets/connected/involve_8bit.png" title="Involve">
+                            <img class="app_icon hover_bounce involve_img" src="/assets/connected/involve_8bit.png" title="Involve" alt="Involve">
                         </a>
                     </div>
                     <div class="fuchsia-texthover">
                         <h3> Discord </h3>
 
                         <a href="https://discord.gg/AkfMMtyXq4" target="_blank" rel="noopener noreferrer">
-                            <img class="app_icon hover_bounce discord_img" src="/assets/connected/discord_8bit.png" title="Discord">
+                            <img class="app_icon hover_bounce discord_img" src="/assets/connected/discord_8bit.png" title="Discord" alt="Discord">
                         </a>
                     </div>
                     <div class="fuchsia-texthover">
                         <h3> Instagram </h3>
                         <a href="https://www.instagram.com/flpolycyberclub/" target="_blank" rel="noopener noreferrer">
-                            <img class="app_icon hover_bounce instagram_img" src="/assets/connected/instagram_8bit.png" title="Instagram">
+                            <img class="app_icon hover_bounce instagram_img" src="/assets/connected/instagram_8bit.png" title="Instagram" alt="Instagram">
                         </a>
                     </div>
                     <div class="fuchsia-texthover">
                         <h3> GitHub </h3>
                         <a href="https://github.com/flpolycyber" target="_blank" rel="noopener noreferrer">
-                            <img class="app_icon hover_bounce github_img" src="/assets/connected/github_8bit.png" title="GitHub">
+                            <img class="app_icon hover_bounce github_img" src="/assets/connected/github_8bit.png" title="GitHub" alt="Github">
                         </a>
                     </div>
                 </div>

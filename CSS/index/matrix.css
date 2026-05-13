@@ -12,10 +12,10 @@
 */
 @keyframes glow-filter {
     from {
-        filter: drop-shadow(0 0 10px #009fdf) drop-shadow(0 0 20px #009fdf);
+        filter: drop-shadow(0 0 10px var(--indigo)) drop-shadow(0 0 20px var(--indigo));
     }
     to {
-        filter: drop-shadow(0 0 20px #4ee7f2) drop-shadow(0 0 30px #4ee7f2);
+        filter: drop-shadow(0 0 20px var(--cyan)) drop-shadow(0 0 30px var(--cyan));
     }
 }
 
@@ -28,11 +28,11 @@
     z-index: -1;
     font-family: topazplus;
     overflow: hidden;
-    background-color: #000;
+    background-color: black;
 }
 
 .matrix-num {
-    color: #009fdf;
+    color: var(--indigo);
     font-size: 15px;
     position: absolute;
     font-family: topazplus;
@@ -41,7 +41,7 @@
 }
 
 .pgtitle {
-    color: #50298a;
+    color: var(--dark-purple);
     animation: glow-filter 1s ease-in-out infinite alternate;
     font-size: 25px;
     text-align: center;

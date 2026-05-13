@@ -3,7 +3,7 @@
     grid-template-columns: repeat(1, 1fr);
     justify-items: center;
 
-    color: blueviolet;
+    color: var(--blueviolet);
     font-family: topazplus;
     padding: 125px;
 }
@@ -22,7 +22,7 @@
 .leader_container {
     --corner_size: min(calc(4vw + 4vh), var(--small_button_size));
     --corner_move: calc(-0.5 * var(--corner_size));
-    --packet_color: SpringGreen;
+    --packet_color: var(--spring-green);
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);

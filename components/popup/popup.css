@@ -1,0 +1,90 @@
+/* inspired by https://freefrontend.com/code/cyberpunk-glitch-upgrade-modal-2026-03-03/ */
+
+:host{
+    --main: var(--blue);
+}
+
+::backdrop { 
+    background: rgba(0,0,0,0.5); 
+}
+
+#my-dialog { 
+    min-width: 600px;
+    max-width: var(--max_width);
+    /* https://css-generators.com/custom-corners/ */
+
+    clip-path: var(--corner-fold);
+    
+    background: color-mix(in srgb, var(--main), transparent 50%);
+    
+    font-family: featuremono;
+    color: var(--main);
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    border: none;
+    padding: 15px;
+
+}
+
+#my-dialog::before {
+    content: "";
+    position: absolute;
+    top: 3px; bottom: 3px; left: 12px; right: 3px;
+    background: rgba(0,0,0,0.5);
+    clip-path: var(--corner-fold);
+    z-index: -1;
+}
+
+.title{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+}
+
+.title h1 {
+    margin: auto;
+}
+
+.title header {
+    flex: 1;
+}
+
+#closebtn{
+    margin-left: auto;
+}
+
+.line{
+    height: 5px;
+    border: none;
+    background-color: var(--main);
+}
+
+#close-icon{
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-bottom: auto;
+}
+
+#main{
+    display: grid;
+    place-items: center;
+}
+
+.img-container {
+  background-color: var(--main);
+  display: inline-block;
+  line-height: 0;
+}
+
+.img-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  filter: grayscale(100%);
+}

@@ -18,6 +18,7 @@
     font-weight: bold;
     font-size: 24px;
     transition: 0.6s ease;
+    -webkit-user-select: none;
     user-select: none;
 }
 

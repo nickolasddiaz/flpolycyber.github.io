@@ -7,8 +7,8 @@
 	z-index: 200;
 	width: var(--button-size);
 	height: var(--button-size);
-	background: var(--bg-sidebar);
-	border: 1px solid var(--border);
+	background: var(--black);
+	border: 1px solid var(--tran-purple);
 	cursor: pointer;
 	display: flex;
 	flex-direction: column;
