@@ -1,7 +1,8 @@
 // usage
-// <script type="module" src="/components/slideshow/main.js"></script>
+// <link rel="stylesheet" href="/components/slideshow/slideshow.css">
+// <script type="module" src="/components/slideshow/slideshow.js"></script>
 // 
-// <slide-show items='[
+// <slide-show duration="5000" items='[
 //     {"title": "title1", "img": "/img/img.png"},
 //     {"title": "title2", "img": "/img/img.png"},
 //     {"title": "title3", "img": "/img/img.png"}]'>
@@ -10,22 +11,26 @@
 class SlideShow extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'open' });
         this._slideIndex = 0;
         this.automove = true;
         this.slides = [];
         this.dots = [];
         this._autoTimer = null;
+        this._duration = this.duration;
     }
 
     connectedCallback() {
         this.render();
-        this.slides = this.shadow.querySelectorAll(".mySlides");
-        this.dots = this.shadow.querySelectorAll(".dot");
+        this.slides = this.querySelectorAll(".mySlides");
+        this.dots = this.querySelectorAll(".slidedot");
         this.automove = true;
         this.slideIndex = 0;
         this.startAuto();
-        
+        this.showSlides();
+    }
+
+    get duration(){
+        return JSON.parse(parseInt(this.getAttribute('duration')) || 5000);
     }
 
     get items() {
@@ -71,7 +76,7 @@ class SlideShow extends HTMLElement {
             if (this.automove) {
                 this.slideIndex = this._slideIndex + 1;
             }
-        }, 4000); // 4 seconds
+        }, this._duration);
     }
 
     showSlides() {
@@ -102,49 +107,39 @@ class SlideShow extends HTMLElement {
         
         // Generate the slide HTML dynamically
         const slidesHTML = items.map((item, index) => `
-            <div class="mySlides fade">
-                <div class="numbertext">${this.printHex(index)}</div>
-                <div class="center">
-                    <img class="slideimg" src="${item.img}" alt="${item.title}">
+            <div class="mySlides slidefade">
+                <div class="slidenumbertext">${this.printHex(index)}</div>
+                <div class="slidecenter slideimage-container">
+                    <img class="slideslideimg" src="${item.img}" alt="${item.title}">
                 </div>
             </div>
         `).join('');
 
         const dots = items.map((item, index) => `
-            <span class="dot" data-slide="${index}"> ${item.title} </span>
+            <span class="slidedot" data-slide="${index}"> ${item.title} </span>
         `).join('');
 
-        this.shadow.innerHTML = `
-            <link rel="stylesheet" href="/CSS/main.css" />
-            <link rel="stylesheet" href="/components/slideshow/slideshow.css">
-            <style>
-                ${this.css}
-            </style>
-
-            <div style="text-align:center">
+        this.innerHTML = `            
+            <div class="slidedots">
                 ${dots}
             </div>
-            
-            <div class="slideshow-container">
+                
+            <div class="slideimg-container">
                 ${slidesHTML}
-                <a id="prev">❮</a>
-                <a id="next">❯</a>
-            </div>
+                <a id="slideprev">❮</a>
+                <a id="slidenext">❯</a>
+             </div>
         `;
 
-        // Add Event Listeners
-        this.shadow.getElementById('prev').addEventListener('click', () => this.plusSlides(-1));
-        this.shadow.getElementById('next').addEventListener('click', () => this.plusSlides(1));
+        this.querySelector('#slideprev').addEventListener('click', () => this.plusSlides(-1));
+        this.querySelector('#slidenext').addEventListener('click', () => this.plusSlides(1));
 
-        this.shadow.querySelectorAll('.dot').forEach((dot) => {
+        this.querySelectorAll('.slidedot').forEach((dot) => {
             dot.addEventListener('click', () => {
                 const slide = Number(dot.dataset.slide);
                 this.currentSlide(slide);
             });
         });
-
-        // Initialize the first slide
-        this.showSlides();
     }
 }
 

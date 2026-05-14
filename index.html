@@ -11,12 +11,11 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="/CSS/SPA/sidebar.css">
-    <link rel="stylesheet" href="/CSS/SPA/hamburger.css">
-    <link rel="stylesheet" href="/CSS/SPA/logo.css">
 
+    <link rel="stylesheet" href="/CSS/index/about.css">
     <link rel="stylesheet" href="/CSS/index/connected.css">
     <link rel="stylesheet" href="/CSS/index/leader.css">
-    <link rel="stylesheet" href="/CSS/index/matrix.css">
+    <link rel="stylesheet" href="/CSS/index/main_title.css">
 
     <link rel="stylesheet" href="/CSS/main.css" />
 
@@ -27,7 +26,10 @@
     <script type="module" src="/JS/SPA/sidebar.js"></script>
 
     <!-- web components -->
+    <link rel="stylesheet" href="/components/slideshow/slideshow.css">
     <script type="module" src="/components/slideshow/slideshow.js"></script>
+    
+    <link rel="stylesheet" href="/components/popup/popup.css">
     <script type="module" src="/components/popup/popup.js"></script>
 
 
@@ -65,18 +67,33 @@
         <div class="maintitle">
             <h1>Florida Poly Cybersecurity Club</h1>
             <h3>A student-lead community who want to <br> learn offensive and defensive cybersecurity.</h3>
+            <div class="title_container">
+                <a class="title_button" href="#about_us"> About Us </a>
+                <a class="title_button" href="/calendar.html"> Meeting Times </a>
+                <a class="title_button" href="#leaders"> Our Team </a>
+                <a class="title_button" href="/projects.html"> Projects </a>
+                <a class="title_button" href="/blue_team.html"> Defensive Team </a>
+                <a class="title_button" href="/CCDC.html"> CCDC Competitions </a>
+                <a class="title_button" href="/red_team.html"> Offensive Team </a>
+                <a class="title_button" href="/CIF.html"> CIF Competitions </a>
+            </div>
         </div>
     </div>
     <div class="content">
         <div class="container">
             <div class="navbar">
-                <h1></h1>
+                <h1>About Us</h1>
             </div>
-            <div class="left">
-                <h2>About Us</h2>
+            <div class="about_us_txt">
+                <h2>Who we are</h2>
+                We're a group of FPU students passionate about all things cybersecurity, both offensive and defensive. Whether you're a seasoned pro or just starting out, our club offers a welcoming space to learn, collaborate, and explore this exciting field.
             </div>
-            <div class="right">
-                <h2>Meeting Information</h2> Meetings are held in IST-1028
+            <div>
+                <h2>Meeting Information</h2> Meetings are held in     
+                    <pop-up title="IST-1028 Location">
+                        <a slot="button" style="text-decoration: underline; cursor: pointer;"> IST-1028: click to view</a>
+                        <img src="/assets/location.jpg" alt="IST-1028" loading="lazy">
+                    </pop-up>
                 <br>
                 <br>
                 <b>
@@ -92,16 +109,10 @@
         </div>
     </div>
 
-    <pop-up title="My Title">
-        <button slot="button"> Button to open the popup</button>
-        <p>This is the main content</p>
-    </pop-up>
-
-
     <slide-show items='[
-        {"title": "img1", "img": "/assets/leader/router.png"},
-        {"title": "img2", "img": "/assets/leader/router.png"},
-        {"title": "img3", "img": "/assets/leader/router.png"}]'>
+        {"title": "CCDC Regionals", "img": "/assets/pics/CCDC_Regionals_2026.jpg"},
+        {"title": "Sunshine CTF", "img": "/assets/pics/Sunshine_CTF_2026.jpg"}
+            ]'>
     </slide-show>
 
     <div class="stay_connected">

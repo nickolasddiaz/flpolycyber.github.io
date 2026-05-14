@@ -1,4 +1,5 @@
 // usage
+// <link rel="stylesheet" href="/components/popup/popup.css">
 // <script type="module" src="/components/popup/popup.js"></script>
 // <pop-up title="My Title">
 //     <button slot="button"> Button to open the popup</button>
@@ -8,31 +9,6 @@
 class PopUp extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({
-            mode: 'open'
-        });
-        this.shadowRoot.innerHTML = `
-        <link rel="stylesheet" href="/CSS/main.css" />
-        <link rel="stylesheet" href="/components/popup/popup.css">
-
-        <span id="open-btn">
-            <slot name="button">
-                <button >Open Popups</button>
-            </slot>
-        </span>
-
-        
-        <dialog id="my-dialog">
-            <div class="title">
-                <h1>${this.title}</h1>
-                <div class="img-container">
-                    <img src="/assets/icons/close.svg" id="close-icon" alt="Close dialog">
-                </div>
-            </div>
-            <hr class="line">
-            <main id="main"><slot></slot></main>
-        </dialog>
-    `;
     }
 
     get title(){
@@ -40,22 +16,46 @@ class PopUp extends HTMLElement {
     }
 
     connectedCallback() {
-        const dialog = this.shadowRoot.querySelector('#my-dialog');
-        const openBtn = this.shadowRoot.querySelector('#open-btn');
-        const closeIcon = this.shadowRoot.querySelector('#close-icon');
+        const providedButton = this.querySelector('[slot="button"]');
+        const providedContent = Array.from(this.childNodes).filter(node => node !== providedButton);
 
-        // Show the modal when the button is clicked
-        openBtn.addEventListener('click', () => dialog.showModal());
+        this.innerHTML = `
+            <span id="popopen-btn"></span>
+            
+            <dialog id="popmy-dialog">
+                <div class="poptitle">
+                    <h1>${this.title}</h1>
+                    <div class="popimg-container">
+                        <img src="/assets/icons/close.svg" id="popclose-icon" alt="Close dialog">
+                    </div>
+                </div>
+                <hr class="popline">
+                <main id="popmain"></main>
+            </dialog>
+        `;
 
-        // Close the dialog when clicking outside the dialog content (on the backdrop)
+        if (providedButton) {
+            this.querySelector('#popopen-btn').appendChild(providedButton);
+        }
+        
+        const mainContainer = this.querySelector('#popmain');
+        providedContent.forEach(node => mainContainer.appendChild(node));
+
+        const dialog = this.querySelector('#popmy-dialog');
+        const openBtn = this.querySelector('#popopen-btn');
+        const closeIcon = this.querySelector('#popclose-icon');
+
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent <a> from navigating
+            dialog.showModal();
+        });
+
         dialog.addEventListener('click', (e) => {
             if (e.target === dialog) dialog.close();
         });
 
         closeIcon.addEventListener('click', () => dialog.close());
 
-
-        // Also allow closing with Escape
         dialog.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') dialog.close();
         });

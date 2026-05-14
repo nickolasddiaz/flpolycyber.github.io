@@ -1,24 +1,20 @@
 /* inspired by https://freefrontend.com/code/cyberpunk-glitch-upgrade-modal-2026-03-03/ */
 
-:host{
-    --main: var(--blue);
-}
-
 ::backdrop { 
     background: rgba(0,0,0,0.5); 
 }
 
-#my-dialog { 
+#popmy-dialog { 
     min-width: 600px;
     max-width: var(--max_width);
     /* https://css-generators.com/custom-corners/ */
 
     clip-path: var(--corner-fold);
     
-    background: color-mix(in srgb, var(--main), transparent 50%);
+    background: color-mix(in srgb, var(--blue), transparent 50%);
     
     font-family: featuremono;
-    color: var(--main);
+    color: var(--blue);
     top: 15%;
     left: 50%;
     transform: translateX(-50%);
@@ -28,7 +24,7 @@
 
 }
 
-#my-dialog::before {
+#popmy-dialog::before {
     content: "";
     position: absolute;
     top: 3px; bottom: 3px; left: 12px; right: 3px;
@@ -37,32 +33,34 @@
     z-index: -1;
 }
 
-.title{
+.poptitle{
     display: flex;
     justify-content: end;
     align-items: center;
     gap: 20px;
+    font-family: featuremono !important;
+    background: none !important;
 }
 
-.title h1 {
+.poptitle h1 {
     margin: auto;
 }
 
-.title header {
+.poptitle header {
     flex: 1;
 }
 
-#closebtn{
+#popclosebtn{
     margin-left: auto;
 }
 
-.line{
+.popline{
     height: 5px;
     border: none;
-    background-color: var(--main);
+    background-color: var(--blue);
 }
 
-#close-icon{
+#popclose-icon{
     border: none;
     cursor: pointer;
     width: 30px;
@@ -70,21 +68,20 @@
     margin-bottom: auto;
 }
 
-#main{
+#popmain{
     display: grid;
     place-items: center;
 }
 
-.img-container {
-  background-color: var(--main);
-  display: inline-block;
-  line-height: 0;
+.popimg-container {
+    background-color: var(--blue) !important;
+    display: inline-block;
+    line-height: 0;
 }
 
-.img-container img {
-  display: block;
-  width: 100%;
-  height: auto;
-  mix-blend-mode: multiply;
-  filter: grayscale(100%);
+.popimg-container img {
+    width: 100%;
+    height: auto;
+    mix-blend-mode: multiply;
+    filter: grayscale(100%);
 }

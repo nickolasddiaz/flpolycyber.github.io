@@ -60,13 +60,13 @@
     display: grid;
     grid-template-columns: auto auto;
     justify-content: center;
-    column-gap: 20px;
+    column-gap: 10px;
 }
 
 /* Inspired by https://www.framer.com/marketplace/components/retro-button/ */
 
 .retro_button {
-    margin: 2vw;
+    margin: 5px;
     display: block;
     box-sizing: border-box;
     background: var(--pink2);
