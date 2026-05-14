@@ -2,30 +2,18 @@
 
 @keyframes fall {
     to {
-        transform: translateY(110vh);
+        transform: translateY(100vh);
     }
 }
 
-/* Changed from  text-shadow to drop-shadow, due to being extreemly laggy on Chrome
-    https://webcode.tools/css-generator/drop-shadow
-    ARGS: horizontal offset, vertical offset, blur radius, and color
-*/
-@keyframes glow-filter {
-    from {
-        filter: drop-shadow(0 0 10px var(--indigo)) drop-shadow(0 0 20px var(--indigo));
-    }
-    to {
-        filter: drop-shadow(0 0 20px var(--cyan)) drop-shadow(0 0 30px var(--cyan));
-    }
-}
-
+/* 
+It would probably be better to use a HTMLCanvas with offscreen canvas over CSS
+ */
 .matrix {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
     font-family: topazplus;
     overflow: hidden;
     background-color: black;
@@ -38,13 +26,39 @@
     font-family: topazplus;
     top: -50px;
     animation: fall 4s linear infinite;
+    z-index: -1;
 }
 
-.pgtitle {
-    color: var(--dark-purple);
-    animation: glow-filter 1s ease-in-out infinite alternate;
-    font-size: 25px;
+/* Changed from  text-shadow to drop-shadow, due to being laggy on Chrome
+    https://webcode.tools/css-generator/drop-shadow
+    ARGS: horizontal offset, vertical offset, blur radius, and color
+*/
+@keyframes glow-filter {
+    from {
+        filter: drop-shadow(0 0 10px var(--indigo)) drop-shadow(0 0 20px var(--indigo));
+    }
+    to {
+        filter: drop-shadow(0 0 20px var(--cyan)) drop-shadow(0 0 30px var(--cyan));
+    }
+}
+
+.mainpage {
+    margin-top: clamp(100px, 30vh, 250px);   
+    margin-bottom: clamp(150px, 50vh, 400px); 
+}
+
+.maintitle{
+    font-size: 28px;
     text-align: center;
     font-family: topazplus;
     /* text-transform: uppercase; */
+}
+
+.maintitle h1{
+    color: var(--dark-purple);
+    animation: glow-filter 1s ease-in-out infinite alternate;
+}
+
+.maintitle h3{
+    color: var(--gold);
 }

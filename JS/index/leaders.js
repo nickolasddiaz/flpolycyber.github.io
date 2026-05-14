@@ -41,8 +41,7 @@ function attachHoverAnimation(video, container, videoSrc) {
 
 }
 
-for (const leader of leaders) {
-    const position = leader["position"];
+for (const [position, leader] of Object.entries(leaders)) {
     const name = leader["name"];
     const color = leader["color"];
     const pic = leader["pic"];

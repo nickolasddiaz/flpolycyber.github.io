@@ -16,18 +16,16 @@ Global style sheet
     src: url("../fonts/featuremonogx.ttf") format("truetype");
 }
 
-
-
 /* https://www.w3schools.com/colors/colors_hsl.asp */
 :root {
-    --cyan: hsl(183, 100%, 50%);
     --yellow: hsl(59, 100%, 50%);
-    --fuchsia: hsl(300, 100%, 50%);
+    --gold: hsl(60, 59%, 51%);
+
+    --cyan: hsl(183, 100%, 50%);
     --blue: hsl(234, 47%, 66%);
     --dark-blue: hsl(235, 32%, 43%);
     --indigo: hsl(197, 100%, 44%);
     --dark-indigo: hsl(274, 81%, 12%);
-
     --blueviolet: hsl(271, 76%, 53%);
 
     --purple: hsl(240, 60%, 76%);
@@ -47,6 +45,7 @@ Global style sheet
     --dark-pink: hsl(345.63, 63.96%, 43.53%);
     --pink2: hsl(326, 49%, 68%);
     --dark-pink2: hsl(326, 36%, 40%);
+    --fuchsia: hsl(300, 100%, 50%);
 
     --light-grey: hsl(0, 0%, 88%);
     --grey: hsl(0, 0%, 50%);

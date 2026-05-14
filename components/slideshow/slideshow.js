@@ -1,3 +1,12 @@
+// usage
+// <script type="module" src="/components/slideshow/main.js"></script>
+// 
+// <slide-show items='[
+//     {"title": "title1", "img": "/img/img.png"},
+//     {"title": "title2", "img": "/img/img.png"},
+//     {"title": "title3", "img": "/img/img.png"}]'>
+// </slide-show>
+
 class SlideShow extends HTMLElement {
     constructor() {
         super();
@@ -84,13 +93,17 @@ class SlideShow extends HTMLElement {
 
     }
 
+    printHex(num){
+        return '0x' + num.toString(16).padStart(2, '0');
+    }
+
     render() {
         const items = this.items;
         
         // Generate the slide HTML dynamically
         const slidesHTML = items.map((item, index) => `
             <div class="mySlides fade">
-                <div class="numbertext">${index + 1} / ${items.length}</div>
+                <div class="numbertext">${this.printHex(index)}</div>
                 <div class="center">
                     <img class="slideimg" src="${item.img}" alt="${item.title}">
                 </div>
@@ -136,14 +149,3 @@ class SlideShow extends HTMLElement {
 }
 
 customElements.define('slide-show', SlideShow);
-
-
-// usage
-// <script type="module" src="/components/slideshow/main.js"></script>
-// 
-// <slide-show items='[
-//     {"title": "title1", "img": "/img/img.png"},
-//     {"title": "title2", "img": "/img/img.png"},
-//     {"title": "title3", "img": "/img/img.png"}]'>
-// </slide-show>
-

@@ -1,3 +1,10 @@
+// usage
+// <script type="module" src="/components/popup/popup.js"></script>
+// <pop-up title="My Title">
+//     <button slot="button"> Button to open the popup</button>
+//     <p>This is the main content</p>
+// </pop-up>
+
 class PopUp extends HTMLElement {
     constructor() {
         super();
@@ -56,10 +63,3 @@ class PopUp extends HTMLElement {
 }
 
 customElements.define('pop-up', PopUp);
-
-// usage
-// <script type="module" src="/components/popup/popup.js"></script>
-// <pop-up title="My Title">
-//     <button slot="button"> Button to open the popup</button>
-//     <p>This is the main content</p>
-// </pop-up>
