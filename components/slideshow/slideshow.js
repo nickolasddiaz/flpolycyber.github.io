@@ -119,7 +119,8 @@ class SlideShow extends HTMLElement {
             <span class="slidedot" data-slide="${index}"> ${item.title} </span>
         `).join('');
 
-        this.innerHTML = `            
+        this.innerHTML = `
+        <div>            
             <div class="slidedots">
                 ${dots}
             </div>
@@ -129,6 +130,7 @@ class SlideShow extends HTMLElement {
                 <a id="slideprev">❮</a>
                 <a id="slidenext">❯</a>
              </div>
+        </div>
         `;
 
         this.querySelector('#slideprev').addEventListener('click', () => this.plusSlides(-1));

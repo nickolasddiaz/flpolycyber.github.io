@@ -4,7 +4,6 @@
     max-width: 1000px;
     position: relative;
     margin: auto;
-    margin-bottom: 60px;
 }
 
 /* Next & previous buttons */
@@ -20,18 +19,23 @@
     transition: 0.6s ease;
     -webkit-user-select: none;
     user-select: none;
+    color: var(--purple);
 }
 
 /* Position the "next button" to the right */
 #slidenext {
     right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+#slideprev{
+    left: 0;
     border-radius: 3px 0 0 3px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
-#slideprev:hover,
-#slidenext:hover {
-    background-color: hsl(from var(--purple) h s l / 0.8);
+#slideprev:hover, #slidenext:hover {
+    color: white;
+    background: hsl(from var(--purple) h s l / 0.8);
 }
 
 /* Number text (1/N etc) */
@@ -41,7 +45,7 @@
     padding: 8px 24px;
     position: absolute;
     top: 0;
-    font-family: featuremono;
+    font-family: featuremono !important;
 }
 
 /* The dots/bullets/indicators */
@@ -51,10 +55,9 @@
     background: var(--light-grey);
     display: inline-block;
     padding: 5px;
-    margin-top: 60px;
     border-radius: 4px;
     transition: background 0.6s ease;
-    font-family: featuremono;
+    font-family: featuremono !important;
 }
 
 .slidedot.active, .slidedot:hover {

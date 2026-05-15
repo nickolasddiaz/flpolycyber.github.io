@@ -34,3 +34,8 @@
     padding-right: 10%;
     padding-left: 10%;
 }
+
+.about_click{
+    text-decoration: underline; 
+    cursor: pointer;
+}
