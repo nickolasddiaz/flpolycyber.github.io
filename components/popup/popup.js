@@ -43,7 +43,7 @@ class PopUp extends HTMLElement {
 
         const dialog = this.querySelector('#popmy-dialog');
         const openBtn = this.querySelector('#popopen-btn');
-        const closeIcon = this.querySelector('#popclose-icon');
+        const closeIcon = this.querySelector('.popimg-container');
 
         openBtn.addEventListener('click', (e) => {
             e.preventDefault(); // Prevent <a> from navigating

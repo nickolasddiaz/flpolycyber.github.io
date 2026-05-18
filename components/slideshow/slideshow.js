@@ -1,12 +1,13 @@
 // usage
 // <link rel="stylesheet" href="/components/slideshow/slideshow.css">
 // <script type="module" src="/components/slideshow/slideshow.js"></script>
-// 
-// <slide-show duration="5000" items='[
-//     {"title": "title1", "img": "/img/img.png"},
-//     {"title": "title2", "img": "/img/img.png"},
-//     {"title": "title3", "img": "/img/img.png"}]'>
+//
+// <slide-show durationMS="5000">
+//     <img alt="Involve" src="/assets/connected/involve_8bit.png">
+//     <img alt="Instagram" src="/assets/connected/instagram_8bit.png">
 // </slide-show>
+// 
+// duration is optional: default is 5000 ms
 
 class SlideShow extends HTMLElement {
     constructor() {
@@ -16,33 +17,33 @@ class SlideShow extends HTMLElement {
         this.slides = [];
         this.dots = [];
         this._autoTimer = null;
-        this._duration = this.duration;
     }
 
     connectedCallback() {
-        this.render();
-        this.slides = this.querySelectorAll(".mySlides");
-        this.dots = this.querySelectorAll(".slidedot");
+        const imgs = Array.from(this.querySelectorAll(':scope > img'));
+
+        this.render(imgs);
+
+        this.slides = this.querySelectorAll(".myzlides");
+        this.dots = this.querySelectorAll(".zlidedot");
         this.automove = true;
         this.slideIndex = 0;
         this.startAuto();
         this.showSlides();
     }
 
-    get duration(){
-        return JSON.parse(parseInt(this.getAttribute('duration')) || 5000);
-    }
-
-    get items() {
-        try {
-            return JSON.parse(this.getAttribute('items') || '[]');
-        } catch (e) {
-            console.error("Invalid JSON in items attribute", e);
-            return [];
+    disconnectedCallback() {
+        if (this._autoTimer) {
+            clearInterval(this._autoTimer);
+            this._autoTimer = null;
         }
     }
 
-    set slideIndex(num){
+    get duration() {
+        return parseInt(this.getAttribute('duration'), 10) || 5000;
+    }
+
+    set slideIndex(num) {
         const total = this.dots.length;
         if (total === 0) {
             this._slideIndex = 0;
@@ -53,7 +54,7 @@ class SlideShow extends HTMLElement {
         this.showSlides();
     }
 
-    get slideIndex(){
+    get slideIndex() {
         return this._slideIndex;
     }
 
@@ -61,7 +62,7 @@ class SlideShow extends HTMLElement {
         this.automove = false;
         this.slideIndex = this._slideIndex + n;
     }
-    
+
     currentSlide(n) {
         this.automove = false;
         this.slideIndex = n;
@@ -76,7 +77,7 @@ class SlideShow extends HTMLElement {
             if (this.automove) {
                 this.slideIndex = this._slideIndex + 1;
             }
-        }, this._duration);
+        }, this.duration);
     }
 
     showSlides() {
@@ -95,53 +96,60 @@ class SlideShow extends HTMLElement {
             slides[this.slideIndex].style.display = "block";
             dots[this.slideIndex].className += " active";
         }
-
     }
 
-    printHex(num){
+    printHex(num) {
         return '0x' + num.toString(16).padStart(2, '0');
     }
 
-    render() {
-        const items = this.items;
-        
-        // Generate the slide HTML dynamically
-        const slidesHTML = items.map((item, index) => `
-            <div class="mySlides slidefade">
-                <div class="slidenumbertext">${this.printHex(index)}</div>
-                <div class="slidecenter slideimage-container">
-                    <img class="slideslideimg" src="${item.img}" alt="${item.title}">
-                </div>
-            </div>
-        `).join('');
-
-        const dots = items.map((item, index) => `
-            <span class="slidedot" data-slide="${index}"> ${item.title} </span>
-        `).join('');
-
+    render(imgs) {
+        // Build the skeleton
         this.innerHTML = `
-        <div>            
-            <div class="slidedots">
-                ${dots}
+        <div>
+            <div class="zlidedots"></div>
+
+            <div class="zlideimg-container">
+                <a id="zlideprev">❮</a>
+                <a id="zlidenext">❯</a>
             </div>
-                
-            <div class="slideimg-container">
-                ${slidesHTML}
-                <a id="slideprev">❮</a>
-                <a id="slidenext">❯</a>
-             </div>
         </div>
         `;
 
-        this.querySelector('#slideprev').addEventListener('click', () => this.plusSlides(-1));
-        this.querySelector('#slidenext').addEventListener('click', () => this.plusSlides(1));
+        const dotsContainer = this.querySelector('.zlidedots');
+        const imgContainer = this.querySelector('.zlideimg-container');
+        const nextBtn = this.querySelector('#zlidenext');
 
-        this.querySelectorAll('.slidedot').forEach((dot) => {
-            dot.addEventListener('click', () => {
-                const slide = Number(dot.dataset.slide);
-                this.currentSlide(slide);
-            });
+        imgs.forEach((img, index) => {
+            const title = img.getAttribute('alt') || '';
+
+            const slide = document.createElement('div');
+            slide.className = 'myzlides zlidefade';
+
+            const numberText = document.createElement('div');
+            numberText.className = 'zlidenumbertext';
+            numberText.textContent = this.printHex(index);
+
+            const center = document.createElement('div');
+            center.className = 'zlidecenter slideimage-container';
+
+            img.classList.add('zlideimg');
+            center.appendChild(img);
+
+            slide.appendChild(numberText);
+            slide.appendChild(center);
+
+            imgContainer.insertBefore(slide, nextBtn.previousElementSibling || nextBtn);
+
+            const dot = document.createElement('span');
+            dot.className = 'zlidedot';
+            dot.dataset.slide = index;
+            dot.textContent = ` ${title} `;
+            dot.addEventListener('click', () => this.currentSlide(index));
+            dotsContainer.appendChild(dot);
         });
+
+        this.querySelector('#zlideprev').addEventListener('click', () => this.plusSlides(-1));
+        nextBtn.addEventListener('click', () => this.plusSlides(1));
     }
 }
 

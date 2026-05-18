@@ -1,13 +1,13 @@
 /* https://www.w3schools.com/howto/howto_js_slideshow.asp */
 
-.slideimg-container {
+.zlideimg-container {
     max-width: 1000px;
     position: relative;
     margin: auto;
 }
 
 /* Next & previous buttons */
-#slideprev, #slidenext {
+#zlideprev, #zlidenext {
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -23,23 +23,23 @@
 }
 
 /* Position the "next button" to the right */
-#slidenext {
+#zlidenext {
     right: 0;
     border-radius: 0 3px 3px 0;
 }
 
-#slideprev{
+#zlideprev{
     left: 0;
     border-radius: 3px 0 0 3px;
 }
 
-#slideprev:hover, #slidenext:hover {
+#zlideprev:hover, #zlidenext:hover {
     color: white;
     background: hsl(from var(--purple) h s l / 0.8);
 }
 
 /* Number text (1/N etc) */
-.slidenumbertext {
+.zlidenumbertext {
     color: var(--purple);
     font-size: 24px;
     padding: 8px 24px;
@@ -49,7 +49,7 @@
 }
 
 /* The dots/bullets/indicators */
-.slidedot {
+.zlidedot {
     cursor: pointer;
     height: 20px;
     background: var(--light-grey);
@@ -60,33 +60,33 @@
     font-family: featuremono !important;
 }
 
-.slidedot.active, .slidedot:hover {
+.zlidedot.active, .zlidedot:hover {
   background: var(--grey);
 }
 
 /* Fading animation */
-.slidefade {
-    animation-name: slidefade;
+.zlidefade {
+    animation-name: zlidefade;
     animation-duration: 1.5s;
 }
 
-.slideslideimg {
+.zlideimg {
     width: 100%;
     height: 420px;
     object-fit: contain;
 }
 
-.slidecenter{
+.zlidecenter{
     display: grid;
     place-items: center;
 }
 
-.slidedots{
+.zlidedots{
     text-align: center;
     padding: 20px;
 }
 
-@keyframes slidefade {
+@keyframes zlidefade {
     from {
         opacity: 0.4;
     }
@@ -97,7 +97,7 @@
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
-    .slideprev, .slidenext, .slidetext {
+    .zlideprev, .zlidenext, .zlidetext {
         font-size: 11px;
     }
 }
