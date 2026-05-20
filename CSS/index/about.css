@@ -1,5 +1,5 @@
 
-.container {
+.about-container {
     display: grid;
     grid-template-areas:
         "navbar navbar"
@@ -14,19 +14,19 @@
     margin: auto;
 }
 
-.container div {
+.about-container div {
     background: white;
     padding: 10px;
     font-family: topazplus;
 }
 
-.container div.navbar {
+.about-container div.navbar {
     background: var(--dark-indigo);
     color: white;
     grid-area: navbar;
 }
 
-.container div.footer {
+.about-container div.footer {
     grid-area: footer;
 }
 
